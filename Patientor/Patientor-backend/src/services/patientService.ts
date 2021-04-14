@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import patients from '../../data/patients';
-import { PatientWithoutSSN,Patient,NewPatient } from '../types';
+import { Patient,NewPatient, PublicPatient } from '../types';
 import {v1 as uuid} from 'uuid';
 
-const getPatients = ():PatientWithoutSSN[] => {
+const getPatients = ():PublicPatient[] => {
   return patients.map(({ id, name, dateOfBirth, gender, occupation })=>({
     id,
     name,
@@ -11,6 +11,11 @@ const getPatients = ():PatientWithoutSSN[] => {
     gender,
     occupation
   }));
+};
+
+const getPatient = (ID:string):Patient|undefined => {
+  const patient:Patient|undefined = patients.find(p => p.id === ID);
+  return patient;
 };
 
 const addPatient = (patient: NewPatient):Patient => {
@@ -27,5 +32,6 @@ const addPatient = (patient: NewPatient):Patient => {
 
 export default {
   getPatients,
-  addPatient
+  addPatient,
+  getPatient
 };
