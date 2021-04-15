@@ -61,16 +61,16 @@ const parseEntries = (entry: unknown): Entry[] => {
   return entry;
 };
 
-type Fields = { name: unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown, entry: unknown };
+type Fields = { name: unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown, entries: unknown };
 
-const toNewPatient = ({ name, dateOfBirth, ssn, gender, occupation, entry }:Fields):NewPatient => {  
+const toNewPatient = ({ name, dateOfBirth, ssn, gender, occupation, entries }:Fields):NewPatient => {  
   const newPatient: NewPatient ={
     name: parseName(name),
     dateOfBirth: parseDate(dateOfBirth),
     ssn: parseSSN(ssn),
     gender: parseGender(gender),
     occupation: parseOccupation(occupation),
-    entries: parseEntries(entry),
+    entries: parseEntries(entries),
   };
 
   return newPatient;
