@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unsafe-assignment */
 import patients from '../../data/patients';
-import { Patient,NewPatient, PublicPatient } from '../types';
+import { Patient,NewPatient, PublicPatient,Entry, NewEntry } from '../types';
 import {v1 as uuid} from 'uuid';
 
 const getPatients = ():PublicPatient[] => {
@@ -30,8 +30,19 @@ const addPatient = (patient: NewPatient):Patient => {
   return newPatient;
 };
 
+const addEntry = (id: string, entry: NewEntry):Entry => {
+  const patient:Patient|undefined = patients.find(p => p.id === id);
+  const entryID: string = uuid();
+  const newEntry: Entry = { ...entry,id:entryID };
+  if(patient){
+    patient.entries.push(newEntry);
+  }
+  return newEntry;
+};
+
 export default {
   getPatients,
   addPatient,
-  getPatient
+  getPatient,
+  addEntry
 };

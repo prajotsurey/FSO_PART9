@@ -50,15 +50,12 @@ const parseGender = (gender: unknown): Gender => {
   return gender;
 };
 
-const isEntry = (entry:unknown): entry is Entry[] => {
-  return Array.isArray(entry);
-};
-
-const parseEntries = (entry: unknown): Entry[] => {
-  if(!entry || !isEntry(entry)){
-    throw new Error('Incorrect or missing Entry');
+const parseEntries = (entries: unknown): Entry[] => {
+  if(!entries){
+    return [];
+  } else {
+    throw new Error("Cannot have entries while creating a patient");
   }
-  return entry;
 };
 
 type Fields = { name: unknown, dateOfBirth: unknown, ssn: unknown, gender: unknown, occupation: unknown, entries: unknown };

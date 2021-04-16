@@ -1,0 +1,19 @@
+POST http://localhost:3001/api/patients/d2773822-f723-11e9-8f0b-362b9e155667/entries/  HTTP/1.1
+content-type: application/json
+
+{
+  "type":"OccupationalHealthCare",
+  "description":"Description",
+  "date": "2012-11-12",
+  "specialist": "specialist",
+  "employerName": "employer",
+  "diagnosisCodes":["a"],
+  "sickLeave":{
+    "startDate":"2012-11-8",
+    "endDate":"2012-11-12"
+  }
+}
+
+####
+
+GET http://localhost:3001/api/patients/d2773822-f723-11e9-8f0b-362b9e155667/ HTTP/1.1
